@@ -1,0 +1,38 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "Clang",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"database-info" : null,
+	"dir-cur-bld" : "/home/aa/prj/x86/leetcode/build",
+	"dir-cur-src" : "/home/aa/prj/x86/leetcode",
+	"dir-top-bld" : "/home/aa/prj/x86/leetcode/build",
+	"dir-top-src" : "/home/aa/prj/x86/leetcode",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : 
+	[
+		"/home/aa/prj/x86/leetcode/source/core",
+		"/home/aa/prj/x86/leetcode/source/core/exercises",
+		"/home/aa/prj/x86/leetcode/source/modules",
+		"/home/aa/prj/x86/leetcode/source/modules/sys"
+	],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/aa/prj/x86/leetcode/build/CMakeFiles/leetcode.dir",
+	"sources" : 
+	{
+		"CMakeFiles/leetcode.dir/source/core/main.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/home/aa/prj/x86/leetcode/source/core/main.cpp"
+		},
+		"CMakeFiles/leetcode.dir/source/core/proba.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/home/aa/prj/x86/leetcode/source/core/proba.cpp"
+		}
+	}
+}

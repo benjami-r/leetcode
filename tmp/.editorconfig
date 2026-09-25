@@ -1,0 +1,14 @@
+# .editorconfig поддерживается в т.ч. такими редакторами:
+# VS Code, Kate, CLion, STM32CubeIDE, Sublime Text (через пакет EditorConfig), nano (через плагин editorconfig-nano)
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+#trim_trailing_whitespace = true
+
+[*.{c,h,s,cpp,hpp}]
+indent_style = space
+indent_size = 2

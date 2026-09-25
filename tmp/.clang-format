@@ -1,0 +1,53 @@
+#.clang-format
+
+BasedOnStyle: LLVM
+IndentWidth: 2                                # количество пробелов для одного уровня отступа
+TabWidth: 4                                   # ширина табуляции в пробелах (если UseTab не используется)
+UseTab: Never                                 # не использовать символ табуляции, только пробелы (имеющиеся табуляции заменяет пробелами)
+ColumnLimit: 0                                # 0 — отключает автоматический перенос строк (если указать другое значение, например, 80 - будет переносить если строка длинее 80 символов)
+Language: Cpp                                 # "Cpp" - используется для Си и C++.
+Standard: Latest                              # можно конкретный (имеют разные синтаксические особенности: C89, C99, C11, C17 или C++11/14/17/20, но не c23) или "Latest"
+
+MaxEmptyLinesToKeep: 1                        # позволяет N пустых строк подряд
+
+AllowShortLoopsOnASingleLine: true            # позволяет for, while, do в одну строку
+AllowShortIfStatementsOnASingleLine: true     # позволяет if в одну строку
+AllowShortFunctionsOnASingleLine: InlineOnly  # позволяет указанные функции (None, All, InlineOnly, Empty) в одну строку
+AllowShortCaseLabelsOnASingleLine: true       # позволяет в switch писать case-метки с одной командой в одну строку
+AllowShortEnumsOnASingleLine: true            # позволяет однострочные enum (иначе разворачивает в солбик по одному значению)
+
+
+
+
+AlignConsecutiveDeclarations:                 # выравнять имена полей структуры по вертикали:
+  Enabled: true                               # - Да
+  AcrossEmptyLines: false                     # - продолжать выравнивать через пустую строку
+  AcrossComments: true                        # - продолжать выравнивать через строку коментария
+  AlignCompound: false                        # - считать указатели (*) и ссылки (&) частью имени
+
+AlignConsecutiveAssignments:                  # выровнять знаки '=' в инициализациях структуры
+  Enabled: true                               # - Да
+  AcrossEmptyLines: false                     # - продолжать выравнивать через пустую строку
+  AcrossComments: false                       # - продолжать выравнивать через строку коментария
+
+AlignTrailingComments:                        # Выравнивает комментарии, идущие после кода, по вертикали
+  Kind: Never                                 # Always - всегда, Leave - не трогать существующее (ручное) выравнивание, Never - только пробел
+  #OverEmptyLines: 1                           # Продолжать выравнивание, если между строками не более N пустых строк
+
+
+
+PointerAlignment: Right                       # звёздочка указателя примыкает к имени: uint32_t *p; а не uint32_t* p;
+BreakBeforeBraces: Attach                     # открывающая фигурная скобка «прицепляется» к предыдущей строке
+AlignAfterOpenBracket: DontAlign              # не выравнивать содержимое после открывающей скобки
+#SpacesInParentheses: True                     # не ставить пробелы сразу после '(' и перед ')'
+SpaceInEmptyParentheses: false                # не ставить пробел внутри пустых скобок ()
+SpaceBeforeParens: Never                      # ставить пробел перед скобками: ControlStatements = только у управляющих конструкций (if, while, for)
+SpaceAfterCStyleCast: false                   # не ставить пробел после C-style приведения типа (int)x -> (int)x
+#SpaceBeforeAssignmentOperators: false         # не добавлять пробел перед операторами присваивания (=, += и т.д.)
+#Cpp11BracedListStyle: false                   # не использовать перенос строк и выравнивание для списков инициализации C++11
+
+#
+# Можно в коде применять управляющие clang-format-примечания:
+# // clang-format off
+# Этот код не форматировать!
+# // clang-format on

@@ -1,0 +1,9 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "CMakeFiles/leetcode.dir/source/core/main.cpp.o"
+    }
+  ],
+  "version": 1
+}
