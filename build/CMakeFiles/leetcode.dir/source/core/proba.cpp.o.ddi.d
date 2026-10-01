@@ -227,13 +227,4 @@ CMakeFiles/leetcode.dir/source/core/proba.cpp.o.ddi: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/uniform_int_dist.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_tempbuf.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/unicode-data.h \
-  /home/aa/prj/x86/leetcode/source/core/exercises/01_two_sum.hpp \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/vector \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_uninitialized.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_vector.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_bvector.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/vector.tcc \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/algorithm \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/ranges_algo.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/pstl/glue_algorithm_defs.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/pstl/execution_defs.h
+  /home/aa/prj/x86/leetcode/source/core/exercises/02_add_two_nums.hpp
