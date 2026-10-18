@@ -227,4 +227,9 @@ CMakeFiles/leetcode.dir/source/core/proba.cpp.o.ddi: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/uniform_int_dist.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_tempbuf.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/unicode-data.h \
-  /home/aa/prj/x86/leetcode/source/core/exercises/02_add_two_nums.hpp
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/vector \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_uninitialized.h \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_vector.h \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_bvector.h \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/vector.tcc \
+  /home/aa/prj/x86/leetcode/source/core/exercises/04_medium_two_arrays.hpp
