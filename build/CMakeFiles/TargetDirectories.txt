@@ -1,6 +1,0 @@
-/home/aa/prj/x86/leetcode/build/CMakeFiles/leetcode.dir
-/home/aa/prj/x86/leetcode/build/CMakeFiles/reconfigure.dir
-/home/aa/prj/x86/leetcode/build/CMakeFiles/run.dir
-/home/aa/prj/x86/leetcode/build/CMakeFiles/run_in_konsole.dir
-/home/aa/prj/x86/leetcode/build/CMakeFiles/edit_cache.dir
-/home/aa/prj/x86/leetcode/build/CMakeFiles/rebuild_cache.dir

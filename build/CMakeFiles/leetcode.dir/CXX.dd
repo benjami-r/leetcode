@@ -1,5 +1,0 @@
-ninja_dyndep_version = 1.0
-build CMakeFiles/leetcode.dir/source/core/main.cpp.o: dyndep
-
-build CMakeFiles/leetcode.dir/source/core/proba.cpp.o: dyndep
-

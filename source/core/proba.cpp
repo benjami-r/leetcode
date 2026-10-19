@@ -15,9 +15,10 @@ void proba() {
   double res;
 
   Solution sol;
-  // std::vector<int> nums01{50};
-  // std::vector<int> nums02{};
-  // res = sol.findMedianSortedArrays(nums01, nums02);
+
+  std::vector<int> nums01{   20,22,32,34,36,38,65,100,101,102   }; //7
+  std::vector<int> nums02{10,20,30,40,50,60,70,80,90,95}; //9
+  res = sol.findMedianSortedArrays(nums01, nums02);
   
   // std::vector<int> nums03{50};
   // std::vector<int> nums04{50};
@@ -35,19 +36,25 @@ void proba() {
   // std::vector<int> nums10{50,60};
   // res = sol.findMedianSortedArrays(nums09, nums10);
 
-
-  const int s1b=1, s1e=5;
-  const int s2b=0, s2e=5;
-  std::vector<int> nums1;
-  std::vector<int> nums2;
-  for(int i2=s2b; i2<=s2e; ++i2){
-    for(int i1=s1b; i1<=s1e; ++i1){
-      nums1.push_back()
-    }
-  }
-
-
-
+  //1234 1234  1234 1234 1234
+  //     1     12   123  1234          
+  //12345 12345  12345 12345 12345 12345
+  //      1      12    123   1234  12345
+  // std::vector<int> nums1, nums2;
+  // for(int i=4; i<=5; ++i){
+  //   for(int j=1;j<=i;++j){
+  //     nums1.push_back(j);
+  //   }
+  //   for(int j=0; j<=i; ++j){
+  //     for(int k=1; k<=j; ++k){
+  //       nums2.push_back(k);
+  //     }
+  //     res = sol.findMedianSortedArrays(nums1, nums2);
+  //     echo("-----res={}\n", res);
+  //     nums2.clear();
+  //   }
+  //   nums1.clear();
+  // }
 
   echo("res={}\n", res);
 }
