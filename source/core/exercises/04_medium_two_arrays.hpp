@@ -19,8 +19,8 @@ class Solution {
   double f0(vcr n1,int s1,int b1,int e1, vcr n2,int s2,int b2,int e2, int s,int l,  int depth=0){
     assert(s2>0);
     double res=0.0;
-    int w1=s1-b1-e1, w2=s2-b2-e2;
-    int wl2=w2/2+w2%2 ;//- (w1%2 && w2%2);
+    int w2=s2-b2-e2;
+    int wl2=w2/2+w2%2;
     int l2=wl2 + b2;
     int l1=l-l2;
 

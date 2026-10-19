@@ -28,7 +28,7 @@ void proba() {
   // std::vector<int> nums06{};
   // res = sol.findMedianSortedArrays(nums05, nums06);
  
-  // std::vector<int> nums07{50,60};
+  // std::vector<int> nums07{50,60}; //-
   // std::vector<int> nums08{50};
   // res = sol.findMedianSortedArrays(nums07, nums08);
   
