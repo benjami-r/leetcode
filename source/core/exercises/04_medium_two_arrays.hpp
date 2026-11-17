@@ -8,99 +8,86 @@
 
 #include <vector>
 
+using vcr = std::vector<int>;
+#define L1 n1[l1-1]
+#define L2 n2[l2-1]
+#define R1 n1[r1-1]
+#define R2 n2[r2-1]
+
 class Solution {
-  using vcr = std::vector<int>;
+  int getL(int size) { //[]=>0; [1]=>1; [1,2]=>1; [1,2,3]=>2; [1,2,3,4]=>2; [1,2,3,4,5]=>3; [1,2,3,4,5,6]=>3; [1,2,3,4,5,6,7]=>4; [1,2,3,4,5,6,7,8]=>4;
+    return size / 2 + size%2; //add 1 to an odd
+  }
+  int getR(int size) { //[]=>1; [1]=>1; [1,2]=>2; [1,2,3]=>2; [1,2,3,4]=>3; [1,2,3,4,5]=>3; [1,2,3,4,5,6]=>4; [1,2,3,4,5,6,7]=>4; [1,2,3,4,5,6,7,8]=>5;
+    return size / 2 + 1;
+  }
+  int getSum(vcr &n1,vcr &n2,  int l1, int l2, int r1, int r2){
+    return (L1>L2?L1:L2) + (R1<R2?R1:R2);
+  }
 
-//4;0 4;1 4;2 4;3 4;4
-//5;0 5;1 5;2 5;3 5;4
-  
-//------------------------------------//pvs(n1,s1,b1,e1,w1,l1, n2,s2,b2,e2,w2,l2, s,l,r);
-//------------------------------------//pvs(n1,s1,l1+b1,b1,e1, n2,s2,l2+b2,b2,e2, s,l);
-  double f0(vcr n1,int s1,int b1,int e1, vcr n2,int s2,int b2,int e2, int s,int l,  int depth=0){
-    assert(s2>0);
-    double res=0.0;
-    int w2=s2-b2-e2;
-    int wl2=w2/2+w2%2;
-    int l2=wl2 + b2;
-    int l1=l-l2;
+  int f0(vcr &n1,vcr &n2, int s1,int s2,  int b1,int b2,int e1,int e2,  int depth=1){
+    int w1=e1-b1-1, w2=e2-b2-1;
+    int l1=getL(w1)+b1, l2=getL(w2)+b2, r1=getR(w1)+b1, r2=getR(w2)+b2;
 
-    pvs(n1,s1,l1,b1,e1, n2,s2,l2,b2,e2, s,l);
-    if(depth==5) {echo("DEPTH.\n");return 2.0;} else {echo("NEXT\n");}
+    pvs(n1,n2, s1,s2, b1,b2,e1,e2, w1,w2, l1,l2,r1,r2);
+    //if(depth==4){echo("Depth={}, stop.\n", depth); return 20000000;}
 
-    if(n1[l1-1] >= n2[l2-1]){
-      {//проверка
-        // echo("!={}\n",l2<s2-b2);
-        // echo("!={}\n",n1[l1-1]<=n2[l2]);
-        if(l2<s2-b2  &&  n1[l1-1]<=n2[l2]){
-          return n1[l1-1] * 2;
-        }
+    if(w1 && w2){
+      if(L1>R2){
+        e1=l1;
+        b2=s1-e1+1;
+        return f0(n1,n2, s1,s2, b1,b2,e1,e2, depth+1);
       }
-      e1=s1-l1;
-      b2=l2;
-      res=f0(n1,s1,b1,e1, n2,s2,b2,e2, s,l, depth+1);
-    }else{
-      {//проверка
-        // echo("^={}\n",l1<s1-e1);
-        // echo("^={}\n",n2[l2-1]<=n1[l1]);
-        if( (l1<s1-e1)  &&  (n2[l2-1]<=n1[l1]) ){
-          return n2[l2-1] * 2;
-        }
+      if(L2>R1){
+        b1=r1;
+        e2=s2-b1+1;
+        return f0(n1,n2, s1,s2, b1,b2,e1,e2, depth+1);
       }
-      res=f0(n2,s2,b2,e2, n1,s1,b1,e1, s,l, depth+1);
+      return (L1>L2?L1:L2) + (R1<R2?R1:R2);
+    }else if(!w1 && !w2){
+        if(b1 && b2) return getSum(n1,n2, b1,b2,e1,e2);
+        if(b1)       return n1[s1-1] + n2[0];
+        if(b2)       return n2[s2-1] + n1[0];
+        return  20000000;
+    }else{ // if(w1==0)
+        if(b1 && b2) return getSum(n1,n2, b1,l2,e1,r2);
+        echo("b1={}, n1[b1-1]={}, L2={}, R2={}", b1, n1[b1-1], L2, R2);
+        //Проблема: если s нечет, нужно дважды брать элемент из b1, а не n1[b1-1] + R2
+        if(b1)       return (n1[b1-1]>L2?n1[b1-1]:L2) + R2;
+        if(b2)       return L2 + (n1[e1-1]<R2?n1[e1-1]:R2);
+        return L2 + R2;
     }
-//ЕЩЕ граничные - когда сводится к wn=1, и когда все уходят налево или направо
+    //return  20000000;
+  }
+public:
+  double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
+    int s1 = nums1.size(), s2 = nums2.size();
+    double res;
+    if(s1 < s2){
+      res = f0(nums1,nums2, s1,s2, 0,0,s1+1,s2+1);
+    }else{
+      res = f0(nums2,nums1, s2,s1, 0,0,s2+1,s1+1);
+    }
+    res/=2.0;
+    echo("========================================================= res={}\n", res);
     return res;
   }
 
-//++++++++++++++++++++++++++++++++++++ // [a,b,c,..d,e,..f,g,h]   [l,m,..r,s,t,..u,v]
-public:
-  double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
-    int s1=nums1.size(), s2=nums2.size(), s=s1+s2, l=s/2+s%2;
-    return (s1>s2 ? f0(nums1,s1,0,0, nums2,s2,0,0, s,l) : f0(nums2,s2,0,0, nums1,s1,0,0, s,l)) / 2.0;
-  }
-
-//pppppppppppppppppppppppppppppppppppp
-private:
-  void pv(vcr &n,int s,int l,int b,int e){
+  private:
+  void pv(vcr &n,int s,int b,int e,  int w,int l,int r){
     char delim[]{'\0','\0'};
-    echo("s={:02}, l={:02} : [",s,l);
-    for(int i=1; i<=(int)n.size(); ++i){
-      if(i==b+1) {echo("] [");delim[0]='\0';}
-      echo("{}{}{}{}", delim, l==i?"<":"", n[i-1], l==i?">":""); delim[0]=',';
-      if(i==s-e) {echo("] [");delim[0]='\0';}
-    }
+    echo("s={:02},b={:02},e={:02},w={:02},l={:02},r={:02} : [",s,b,e,w,l,r);
+    int i=1;
+    for(; i<=b; ++i,delim[0]=',') echo("{}{}{}{}", delim, i==l||i==r?"<":"", n[i-1], i==l||i==r?">":"");
+    echo("] [");delim[0]='\0';
+    for(; i< e; ++i,delim[0]=',') echo("{}{}{}{}", delim, i==l||i==r?"<":"", n[i-1], i==l||i==r?">":"");
+    echo("] [");delim[0]='\0';
+    for(; i<=s; ++i,delim[0]=',') echo("{}{}{}{}", delim, i==l||i==r?"<":"", n[i-1], i==l||i==r?">":"");
     echo("]\n");
   }
-  void pvs(vcr n1,int s1,int l1,int b1,int e1, vcr n2,int s2,int l2,int b2,int e2, int s,int l){
-    pv(n1,s1,l1,b1,e1);
-    pv(n2,s2,l2,b2,e2);
-    echo("________________________s={},l={}\n", s,l);
+  void pvs(vcr n1,vcr n2,  int s1,int s2,  int b1,int b2,int e1,int e2,  int w1,int w2,  int l1,int l2,int r1,int r2){
+    pv(n1,s1, b1,e1,w1,l1,r1);
+    pv(n2,s2, b2,e2,w2,l2,r2);
   }
 
 };
-
-
-
-
-  // int getL(int size) { //[1] => 1;  [1,2] => 1;  [1,2,3] => 2;  [1,2,3,4] => 2;  [1,2,3,4,5] => 3;  [1,2,3,4,5,6] => 3;  [1,2,3,4,5,6,7] => 4;  [1,2,3,4,5,6,7,8] => 4;
-  //   return size / 2 + (size%2 ? 1 : 0); //к нечетному добавляем 1
-  // }
-  // int getR(int size) { //[1] => 1;  [1,2] => 2;  [1,2,3] => 2;  [1,2,3,4] => 3;  [1,2,3,4,5] => 3;  [1,2,3,4,5,6] => 4;  [1,2,3,4,5,6,7] => 4;  [1,2,3,4,5,6,7,8] => 5
-  //   return size / 2 + 1;
-  // }
-
-
-
-  // void pv(int id, vcr &n,int s,int b,int e,int w,int l){ //b,e - начало и конец рабочего куска
-  //   char delim[]{'\0','\0'};
-  //   echo("n{0}={1}: s{0}={2:02}, b{0}={3:02}, e{0}={4:02}, (w{0}={5:02}), l{0}={6:02} : \n[", id,(void*)&n,s,b,e,w,l);
-  //   for(int i=1; i<=s; ++i){
-  //     echo("{}{}{}{}", delim, i==l?"<":"", n[i-1], i==l?">":""); delim[0]=',';  
-  //   }
-  //   echo("]\n");
-  // }
-  // void pvs(vcr n1,int s1,int b1,int e1,int w1,int l1,  vcr n2,int s2,int b2,int e2,int w2,int l2,  int s,int l,int r){
-  //   pv(1, n1,s1,b1,e1,w1,l1);
-  //   pv(2, n2,s2,b2,e2,w2,l2);
-  //   echo("___s={},___l={},___r={}___\n", s,l,r);
-  // }
