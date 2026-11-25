@@ -14,10 +14,12 @@
 
 //- - - - - - - - - - - - echo 
 #ifdef ECHO //Этот вариант устаревший, но вродь наиэффективный, в т.ч. если ECHO не определен - цена действительно 0 (вызов вообще не рассматривается).
-    #include <print>
-    #define echo(...) std::print(__VA_ARGS__)
+  #include <print>
+  #define echo(...)   std::print(__VA_ARGS__)
+  #define echoln(...) std::print(__VA_ARGS__); std::print("\n")
 #else
-    #define echo(...) ((void)0)
+  #define echo(...)   ((void)0)
+  #define echoln(...) ((void)0)
 #endif
 //Usage:
 //    #define ECHO //перед #include "sys.hpp"
@@ -38,10 +40,23 @@
 //- - - - - - - - - - - - третий вариант (stdio - оч.тяжелый при компиляции)
 // #define echo1(...) do { std::cout << "[echo] " << __FILE_NAME__ << ", " << __func__ << "(): " << __VA_ARGS__ << "\n"; } while(0)
 
-//- - - - - - - - - - - - stop(0)
-#include <cstdlib> //exit()
-#define stop(EXITCODE) {echo("STOP in {} on line {} with code {}\n", __FILE__, __LINE__, EXITCODE); std::exit(EXITCODE);}
-//Usage: stop(0);
+//- - - - - - - - - - - - stop
+#ifdef ECHO 
+  #include <cstdlib> //exit()
+  #define stop                  {echo("STOP {}:{} #{}\n", __FILE__, __LINE__,        0            ); std::exit(0       );}
+  #define stopc(EXITCODE)       {echo("STOP {}:{} #{}\n", __FILE__, __LINE__,        EXITCODE     ); std::exit(EXITCODE);}
+  #define stopw(WHY)            {echo("STOP {}:{} #{} \"{}\"\n", __FILE__, __LINE__, 0       , WHY); std::exit(0       );}
+  #define stopcw(EXITCODE, WHY) {echo("STOP {}:{} #{} \"{}\"\n", __FILE__, __LINE__, EXITCODE, WHY); std::exit(EXITCODE);}
+#else
+  #define stop                  ((void)0)
+  #define stopc(EXITCODE)       ((void)0)
+  #define stopw(WHY)            ((void)0)
+  #define stopcw(EXITCODE, WHY) ((void)0)
+#endif
+//Usage: stop;
+//Usage: stopc(1);
+//Usage: stopw("Becouse a>b.");
+//Usage: stopcw(2, "Becouse a>b.");
 
 //- - - - - - - - - - - - My helpful  (Массив объектов с случайным доступом - добавлением, удалением. Годится для списка задач - поставили, выполняем, удаляем/завершилась. Работает указателями, автоматически (перемещает последнюю в место удаленной, тем самым держа актуальные с [0], и помня индекс первой свободной. Ограничивается заданным при создании кол-вом обслуживаемых задач.))
 template <typename T>
